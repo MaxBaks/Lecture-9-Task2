@@ -20,15 +20,13 @@ class Team {
     return [...this.characters];
   }
 
-  [Symbol.iterator]() {
+  * [Symbol.iterator]() {
     let index = 0;
     const finish = this.toArray().length;
-    return {
-      next: () => ({
-        value: this.toArray()[index++],
-        done: index === finish + 1,
-      }),
-    };
+
+    while (index !== finish) {
+      yield this.toArray()[index++];
+    }
   }
 }
 
